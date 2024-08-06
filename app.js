@@ -19,7 +19,6 @@ const options = {
     database: process.env.MYSQL_DB,
     expiration: 1000 * 60 * 60 * 24, // 세션의 만료 기간을 24시간(1일)로 설정
     clearExpired: true, //만료된 세션을 자동으로 확인하고 삭제할지 여부를 설정
-    checkExpirationInterval: 1000 * 60 * 30, //만료된 세션이 지워지는 빈도.30분
     createDatabaseTable: true, // 세션 데이터베이스 테이블이 아직 존재하지 않는 경우 생성할지 여부
 }
 
