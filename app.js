@@ -4,6 +4,7 @@ import MySQLSession from 'express-mysql-session';
 import dotenv from 'dotenv';
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import { indexRouter } from './src/routers/indexRouter';
 
 const app = express();
 
@@ -22,7 +23,7 @@ const options = {
     createDatabaseTable: true, // 세션 데이터베이스 테이블이 아직 존재하지 않는 경우 생성할지 여부
 };
 
-const sessionStore = new MySQLStore(options);
+const sessionStore = MySQLStore(options);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,13 +38,17 @@ app.use(
             httpOnly: true, //자바스크립트를 통해 세션 쿠키를 사용할 수 없도록 함
             maxAge: 1000 * 60 * 60 * 24, //쿠키 유효시간 24시간
         },
-        store : sessionStore,
+        store : new sessionStore,
     });
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/', indexRouter);
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on : 서버가 ${SERVER_PORT}번 포트에서 실행 중입니다.`);
 });

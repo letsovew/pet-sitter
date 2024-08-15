@@ -30,6 +30,7 @@
     "express-mysql-session": "^3.0.3",
     "express-session": "^1.18.0",
     "nodemon": "^3.1.4",
+    "passport": "^0.7.0",
     "prisma": "^5.18.0",
     "prisma-client": "^0.0.0",
     "store": "^2.0.12"

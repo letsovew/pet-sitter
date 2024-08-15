@@ -1,25 +1,30 @@
 //AUTH
-const JOIN = "/auth/join"
-const LOGIN = "/auth/login"
-const AUTH_REGISTER = "/auth/register"
+const AUTH = "/auth";
+const JOIN = "/join";
+const LOGIN = "/login";
+const AUTH_REGISTER = "/register";
 
-//USER
-const USER_UPDATE = "/users/update/:id"
-const PROPOSALS_CREATE = "/users/proposals/create"
-const USER_CONTRACTS = "/users/contracts"
+//USERS
+const USERS = "/users";
+const USER_UPDATE = "/update/:id";
+const PROPOSALS_CREATE = "/proposals/create";
+const USER_CONTRACTS = "/contracts";
 
-//PARTNER
-const PARTNER_PROPOSALS = "/partners/proposals"
-const PARTNER_CONTRACTS = "/partners/contracts"
-const CONTRACTS_CREATE = "/partners/contracts/create/:id"
+//PARTNERS
+const PARTNERS = "/partners"
+const PARTNER_PROPOSALS = "/proposals"
+const PARTNER_CONTRACTS = "/contracts"
+const CONTRACTS_CREATE = "/contracts/create"
 
 
-//POST
-const POST_LIST = "/posts/list"
-const POST_CREATE = "/posts/create"
+//POSTS
+const POSTS = "/posts";
+const POST_LIST = "/list"
+const POST_CREATE = "/create"
 
-//PET
-const PET_REGISTER = "/pets/register"
+//PETS
+const PETS = "/pets";
+const PET_REGISTER = "/register"
 
 //PROPOSAL
 
@@ -29,6 +34,11 @@ const PET_REGISTER = "/pets/register"
 
 
 const routes = {
+    auth: AUTH,
+    users: USERS,
+    partners: PARTNERS,
+    pets: PETS,
+    posts: POSTS,
     join: JOIN,
     login: LOGIN,
     authRegister: AUTH_REGISTER,
