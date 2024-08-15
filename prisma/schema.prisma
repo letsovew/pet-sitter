@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["omitApi"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Users {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  nickname      String   @unique
+  password  String
+  pet  Pets[]
+  proposal  Proposals[]
+  contract  Contracts[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Partners {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  nickname      String   @unique
+  post      Posts[]
+  proposal  Proposals[]
+  contract  Contracts[]
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("partners")
+}
+
+model Pets {
+  id      Int   @id @default(autoincrement())
+  userId  Int   @unique
+  name    String
+  type    TYPES?
+  age     Int
+  gender  GENDER
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user Users @relation(fields: [userId], references: [id])
+
+  @@map("pets")
+}
+
+model Posts{
+  id    Int       @id @default(autoincrement())
+  partnerId  Int   @unique
+  title   String  @db.Text
+  content String  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  partner Partners @relation(fields: [partnerId], references: [id])
+
+  @@map("posts")
+}
+
+model Proposals {   //Request for Proposal(제안요청서)
+  id  Int   @id @default(autoincrement())
+  userId Int @unique
+  partnerId Int @unique
+  title String @db.Text
+  content String @db.Text
+  createdAt DateTime @default(now())
+
+  user Users @relation(fields: [userId],references: [id])
+  partner Partners @relation(fields: [partnerId], references: [id])
+
+  @@map("proposals")
+}
+
+model Contracts{  //Service Level Agreement(서비스 수준 협약)
+  id Int @id @default(autoincrement())
+  partnerId Int @unique
+  userId  Int @unique 
+  petId Int @unique
+  content String @db.Text
+  date  DateTime
+  createdAt DateTime @default(now())
+
+  partner Partners @relation(fields: [partnerId], references: [id])
+  user Users @relation(fields: [userId],references: [id])
+
+  @@map("contracts")
+}
+
+
+enum TYPES {
+  CAT
+  DOG
+  HAMSTER
+  PARROT
+}
+
+enum GENDER {
+  FEMALE
+  MALE
+}
