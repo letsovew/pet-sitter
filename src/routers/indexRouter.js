@@ -10,12 +10,12 @@ import { contractRouter } from './contractRouter.js';
 
 const indexRouter = express.Router();
 
-indexRouter.use(authRouter);
-indexRouter.use(userRouter);
-indexRouter.use(partnerRouter);
-indexRouter.use(petRouter);
-indexRouter.use(postRouter);
-indexRouter.use(proposalRouter);
-indexRouter.use(contractRouter);
+indexRouter.use(routes.auth, authRouter);
+indexRouter.use(routes.users, userRouter);
+indexRouter.use(routes.partners, partnerRouter);
+indexRouter.use(routes.pets, petRouter);
+indexRouter.use(routes.posts, postRouter);
+indexRouter.use(routes.proposals, proposalRouter);
+indexRouter.use(routes.contracts, contractRouter);
 
 export { indexRouter };

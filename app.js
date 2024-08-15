@@ -4,7 +4,7 @@ import MySQLSession from 'express-mysql-session';
 import dotenv from 'dotenv';
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import { indexRouter } from './src/routers/indexRouter';
+import { indexRouter } from './src/routers/indexRouter.js';
 
 const app = express();
 
@@ -45,10 +45,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use('/', indexRouter);
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on : 서버가 ${SERVER_PORT}번 포트에서 실행 중입니다.`);
 });
+
+export default app;
