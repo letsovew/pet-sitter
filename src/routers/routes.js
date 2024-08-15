@@ -5,12 +5,13 @@ const AUTH_REGISTER = "/auth/register"
 
 //USER
 const USER_UPDATE = "/users/update/:id"
-const USER_PROPOSALS = "/users/proposals"
+const PROPOSALS_CREATE = "/users/proposals/create"
 const USER_CONTRACTS = "/users/contracts"
 
 //PARTNER
 const PARTNER_PROPOSALS = "/partners/proposals"
 const PARTNER_CONTRACTS = "/partners/contracts"
+const CONTRACTS_CREATE = "/partners/contracts/create/:id"
 
 
 //POST
@@ -22,7 +23,9 @@ const PET_REGISTER = "/pets/register"
 
 //PROPOSAL
 
+
 //CONTRACTS
+
 
 
 const routes = {
@@ -33,10 +36,11 @@ const routes = {
         if(id)  return `/users/update/${id}`;
         else return USER_UPDATE;
     },
-    userProposals: USER_PROPOSALS,
+    proposalCreate: PROPOSALS_CREATE,
     userContracts: USER_CONTRACTS,
     partnerProposals: PARTNER_PROPOSALS,
     partnerContracts: PARTNER_CONTRACTS,
+    contractsCreate: CONTRACTS_CREATE,
     postList: POST_LIST,
     postCreate: POST_CREATE,
     petRegister: PET_REGISTER,
