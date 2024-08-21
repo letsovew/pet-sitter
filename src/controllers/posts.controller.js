@@ -31,6 +31,25 @@ export class PostController {
             });
         }catch(error){
             next(error);
-        }
-    }
+        };
+    };
+
+    updatePost = async(req, res, next) => {
+        const{
+            body: { title, content}
+        } = req;
+        const postId = req.query.id;
+
+        try{
+            if(!title && !content) return throw new Error('변경할 내용을 기입해 주십시오.');
+            const newPost = await postService.updatePost(postId, title, content);
+            if(!newPost) return throw new Error('게시물 수정이 실패하였습니다.');
+            return res.json({
+                message: '게시물 수정이 완료되었습니다.',
+                data: newPost,
+            });
+        }catch(error){
+            next(error);
+        };
+    };
 };
