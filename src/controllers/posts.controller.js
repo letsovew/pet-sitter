@@ -23,7 +23,7 @@ export class PostController {
         try{
             if(!title || !content) throw new Error('모든 항목을 기입해 주십시오.');
 
-            const post = await postService.createPost(author.email, title, content);
+            const post = await postService.createPost(author.id, author.email, title, content);
 
             res.json({
                 message: '게시물이 등록되었습니다.',

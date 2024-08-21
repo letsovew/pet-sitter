@@ -27,5 +27,14 @@ export class PostService {
 
     createPost = async (authorId, email, title, content) => {
         const post = await postRepository.createPost(authorId, email, title, content);
+        if(!post) return '게시물 등록에 실패했습니다.';
+        return{
+            id: +post.id,
+            authorId: +post.authorId,
+            title: post.title,
+            content: post.content,
+            createdAt: post.createdAt,
+            updatedAt: post.updatedAt,
+        };
     };
 }
