@@ -21,5 +21,20 @@ export class PostRepository{
             };
         });
         return post;
-    }
+    };
+
+    updatePost = async (authorId, postId, title, content) => {
+
+        const newPost = await prisma.posts.update({
+            where: {
+                id: +postId,
+                authorId
+            },
+            data: {
+                ...(title && { title }),
+                ...(content && { content }),
+            },
+        });
+        return newPost;
+    };
 };
