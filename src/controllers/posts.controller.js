@@ -25,11 +25,10 @@ export class PostController {
 
             const post = await postService.createPost(author.id, author.email, title, content);
 
-            res.json({
+            return res.json({
                 message: '게시물이 등록되었습니다.',
                 data: post,
             });
-            next();
         }catch(error){
             next(error);
         }
