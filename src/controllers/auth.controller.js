@@ -35,7 +35,6 @@ export class AuthController {
         const user = req.logged.user;
         try{
             const data = await authService.register(user);
-            req.logged.partner = data;
             return res.json({
                 message: "파트너 등록 완료",
                 data,

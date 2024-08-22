@@ -7,24 +7,25 @@ const AUTH_REGISTER = "/register";
 //USERS
 const USERS = "/users";
 const USER_UPDATE = "/update/:id";
-const PROPOSALS_CREATE = "/proposals/create";
-const USER_CONTRACTS = "/contracts";
+const PROPOSALS_CREATE = "/proposals";
+const USER_SCHEDULS = "/schdules";
 
 //PARTNERS
-const PARTNERS = "/partners"
-const PARTNER_PROPOSALS = "/proposals"
-const PARTNER_CONTRACTS = "/contracts"
-const CONTRACTS_CREATE = "/contracts/create"
+const PARTNERS = "/partners";
+const PARTNER_PROPOSALS = "/proposals";
+const PARTNER_CONTRACTS = "/contracts";
+const CREATE_SCHEDULE = "/schedule/create";
 
 
 //POSTS
 const POSTS = "/posts";
-const POST_LIST = "/list"
-const POST_CREATE = "/create"
+const POST_LIST = "/list";
+const POST_CREATE = "/create";
+const POST_UPDATE = "/update";
 
 //PETS
 const PETS = "/pets";
-const PET_REGISTER = "/register"
+const PET_REGISTER = "/register";
 
 //PROPOSAL
 
@@ -47,12 +48,13 @@ const routes = {
         else return USER_UPDATE;
     },
     proposalCreate: PROPOSALS_CREATE,
-    userContracts: USER_CONTRACTS,
+    userContracts: USER_SCHEDULES,
     partnerProposals: PARTNER_PROPOSALS,
     partnerContracts: PARTNER_CONTRACTS,
-    contractsCreate: CONTRACTS_CREATE,
+    createSchedule: CREATE_SCHEDULES,
     postList: POST_LIST,
-    postCreate: POST_CREATE,
+    createPost: POST_CREATE,
+    updatePost: POST_UPDATE,
     petRegister: PET_REGISTER,
 };
 
