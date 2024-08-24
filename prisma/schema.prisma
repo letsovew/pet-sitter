@@ -35,7 +35,7 @@ model Partners {
   nickname      String   @unique
   post      Posts[]
   proposal  Proposals[]
-  contract  Schedules[]
+  schedule  Schedules[]
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
