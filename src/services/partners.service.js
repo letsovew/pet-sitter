@@ -5,7 +5,7 @@ const partnerRepository = new PartnerRepository();
 export class PartnerService {
 
     createSchedule = async (partnerId, userId, description, date) => {
-        if(!userId || !description || !date) return res.json('스케쥴을 다시 작성해주십시오');
+        if(!partnerId || !userId || !description || !date) return res.json('스케쥴을 다시 작성해주십시오');
         const schedule = await partnerRepository.createSchedule(partnerId, userId, description, date);
         return {
             id: +schedule.id,
