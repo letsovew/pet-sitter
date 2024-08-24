@@ -12,9 +12,10 @@ export class PartnerController {
 
         try{
             const schedule = await partnerService.createSchedule(partnerId, userId, description, date);
-            res.json({
-                message: '스케쥴이 등록됐습니다.';
-                data: schedule,
+            return res.status(HTTP_STATUS.CREATED).json({
+                status: HTTP_STATUS.CREATED,
+                message: MESSAGES.SCHEDULES.CREATED.SUCCEED,
+                data: { schedule },
             });
         }catch(error){
             next(error);

@@ -9,4 +9,4 @@ const userRouter = express.Router();
 
 userRouter.post(routes.createProposal, checkLoggedUser, createProposal);
 
-export default userRouter;
+export default {userRouter};

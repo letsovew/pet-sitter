@@ -7,13 +7,13 @@ const AUTH_REGISTER = "/register";
 //USERS
 const USERS = "/users";
 const USER_UPDATE = "/update/:id";
-const PROPOSALS_CREATE = "/proposals";
+const REQUEST_PROPOSALS = "/proposals";
 const USER_SCHEDULS = "/schdules";
 
 //PARTNERS
 const PARTNERS = "/partners";
 const PARTNER_PROPOSALS = "/proposals";
-const PARTNER_CONTRACTS = "/contracts";
+const PARTNER_SCHEDULE = "/schedule";
 const CREATE_SCHEDULE = "/schedule/create";
 
 
@@ -21,7 +21,7 @@ const CREATE_SCHEDULE = "/schedule/create";
 const POSTS = "/posts";
 const POST_LIST = "/list";
 const POST_CREATE = "/create";
-const POST_UPDATE = "/update";
+const POST_UPDATE = "/update/:id";
 
 //PETS
 const PETS = "/pets";
@@ -47,10 +47,14 @@ const routes = {
         if(id)  return `/users/update/${id}`;
         else return USER_UPDATE;
     },
-    proposalCreate: PROPOSALS_CREATE,
+    postUpdate: id => {
+        if(id) return `/posts/update/${id}`;
+        else return POST_UPDATE;
+    },
+    requestProposals: REQUEST_PROPOSALS,
     userContracts: USER_SCHEDULES,
     partnerProposals: PARTNER_PROPOSALS,
-    partnerContracts: PARTNER_CONTRACTS,
+    partnerSchedule: PARTNER_SCHEDULE,
     createSchedule: CREATE_SCHEDULES,
     postList: POST_LIST,
     createPost: POST_CREATE,

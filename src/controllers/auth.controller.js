@@ -10,7 +10,11 @@ export class AuthController {
         } = req;
         try{
             const data = await authService.join(email, name, password);
-            return res.json(data);
+            return res.status(HTTP_STATUS.CREATED).json({
+                status: HTTP_STATUS.CREATED,
+                message: MESSAGES.AUTH.JOIN.SUCCEED,
+                data,
+            });
         }catch(error){
             next(error);
         }
@@ -21,8 +25,9 @@ export class AuthController {
         try{
             const data = await authService.logIn(user);
             req.logged.user = data;
-            return res.json({
-                message: "로그인 완료",
+            res.status(HTTP_STATUS.OK).json({
+                status: HTTP_STATUS.OK,
+                message: MESSAGES.AUTH.LOGIN.SUCCEED,
                 data,
             });
             next();
@@ -35,8 +40,9 @@ export class AuthController {
         const user = req.logged.user;
         try{
             const data = await authService.register(user);
-            return res.json({
-                message: "파트너 등록 완료",
+            return res.status(HTTP_STATUS.CREATED).json({
+                status: HTTP_STATUS.CREATED,
+                message: MESSAGES.AUTH.REGISTER.SUCCEED,
                 data,
             });
         }catch(error){

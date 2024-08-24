@@ -1,3 +1,4 @@
+import { MESSAGES } from '../constants/message.constant.js';
 import { PostService } from '../services/post.service.js';
 
 const postService = new PostService();
@@ -21,14 +22,15 @@ export class PostController {
             body: { title, content }
         } = req;
         try{
-            if(!title || !content) throw new Error('모든 항목을 기입해 주십시오.');
+            if (!title || !content) throw new Error('InvalidParamsError');
 
             const post = await postService.createPost(author.id, author.email, title, content);
 
-            return res.json({
-                message: '게시물이 등록되었습니다.',
+            return res.status(HTTP_STATUS.OK).json({
+                message: MESSAGES.POSTS.CREATED.SUCCEED,
                 data: post,
             });
+            next();
         }catch(error){
             next(error);
         };
@@ -42,9 +44,16 @@ export class PostController {
         const postId = req.query.id;
 
         try{
+            if (!post) {
+                return res.status(HTTP_STATUS.NOT_FOUND).json({
+                    status: HTTP_STATUS.NOT_FOUND,
+                    message: MESSAGES.POSTS.COMMON.NOT_FOUND,
+                });
+            }
             const newPost = await postService.updatePost(author.id, postId, title, content);
-            return res.json({
-                message: '게시물 수정이 완료되었습니다.',
+            return res.status(HTTP_STATUS.OK).json({
+                status: HTTP_STATUS.OK,
+                message: MESSAGES.POSTS.UPDATE.SUCCEED,
                 data: newPost,
             });
         }catch(error){

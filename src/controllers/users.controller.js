@@ -11,8 +11,9 @@ export class UserController {
         const userId = req.query.id;
         try{
             const data = await userService.requestProposal(userId, partnerId, title, content);
-            res.json({
-                message: '펫시터 서비스 요청서를 전달했습니다.';
+            return res.status(HTTP_STATUS.OK).json({
+                status: HTTP_STATUS.OK,
+                message: MESSAGES.PROPOSALS.REQUEST.SUCCEED,
                 data,
             });
         }catch(errpr){

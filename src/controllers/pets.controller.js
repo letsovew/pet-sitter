@@ -11,10 +11,11 @@ export class PetsController {
         const userId = req.logged.user.id;
         try{
             const data = await petsService.register(userId, name, type, age, gender);
-            return res.json({
-                message: "반려동물 등록 완료",
+            return res.status(HTTP_STATUS.OK).json({
+                status: HTTP_STATUS.OK,
+                message: MESSAGES.PETS.REGISTER.SUCCEED,
                 data,
-            });
+            });;
         }catch(error){
             next(error);
         };

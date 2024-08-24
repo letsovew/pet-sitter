@@ -1,5 +1,7 @@
 import express from "express";
 import routes from "./routes";
+import { joinValidator } from "../middlewares/validators/join.validator";
+import { logInValidator } from "../middlewares/validators/login.validator";
 import {
     join,
     logIn,
@@ -11,8 +13,8 @@ import {
 
 const authRouter = express.Router();
 
-userRouter.post(routes.join, join);
-userRouter.post(routes.logIn, logIn);
-userRouter.post(routes.register, checkLoggedUser, register);
+authRouter.post(routes.join, joinValidator, join);
+authRouter.post(routes.logIn, logInValidator, logIn);
+authRouter.post(routes.register, checkLoggedUser, register);
 
-export default authRouter;
+export default { authRouter };

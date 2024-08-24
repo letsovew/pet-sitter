@@ -1,10 +1,4 @@
 import { MIN_PASSWORD_LENGTH } from './auth.constant.js';
-import { 
-    MIN_REVIEW_LENGTH,
-    MAX_REVIEW_LENGTH,
-    MIN_SCORE,
-    MAX_SCORE
-} from './review.constant.js';
 
 export const MESSAGES = {
     AUTH: {
@@ -20,7 +14,7 @@ export const MESSAGES = {
         },
         PASSWORD_CONFIRM: {
             REQUIRED: '비밀번호 확인을 입력해 주세요.',
-            NOT_MATCHED_WITH_PASSWORD: '입력 한 두 비밀번호가 일치하지 않습니다.',
+            NOT_MATCHED_WITH_PASSWORD: '비밀번호가 일치하지 않습니다.',
         },
         NAME: {
             REQUIRED: '사용할 이름을 입력해 주세요.',
@@ -40,6 +34,9 @@ export const MESSAGES = {
         },
         LOGIN: {
         SUCCEED: '로그인에 성공했습니다.',
+        },
+        REGISTER: {
+            SUCCEED: '파트너 등록이 완료되었습니다.'.
         },
     },
     USER: {
@@ -64,33 +61,46 @@ export const MESSAGES = {
         SUCCEED: '회원 탈퇴 되었습니다.',
         },
     },
-    REVIEWS: {
+    POSTS: {
         COMMON: {
-        SCORE: {
-            REQUIRED: '점수를 매겨주세요.',
-            SCORE_SCOPE: `점수는 ${MIN_SCORE}이상 ${MAX_SCORE}까지 가능합니다.`
+        TITLE: {
+            REQUIRED: '제목을 작성해주세요.',
         },
         CONTENT: {
-            REQUIRED: '자기소개를 입력해 주세요.',
-            LENGTH: `자기소개는 ${MIN_REVIEW_LENGTH}자 이상 ${MAX_REVIEW_LENGTH}이하로 작성해야 합니다.`,
+            REQUIRED: '내용을 입력해주세요.',
         },
-        NOT_FOUND: '리뷰 내역이 존재하지 않습니다.',
+        NOT_FOUND: '작성한 게시물이 존재하지 않습니다.',
         },
-        CREATE: {
-        SUCCEED: '리뷰가 작성됐습니다.',
+        CREATED: {
+            SUCCEED: '게시물이 작성됐습니다.',
         },
         READ_LIST: {
-        SUCCEED: '리뷰 내역을 가져왔습니다.',
+            SUCCEED: '게시물들을 가져왔습니다.',
         },
         READ_DETAIL: {
-        SUCCEED: '리뷰 상세 조회에 성공했습니다.',
+            SUCCEED: '게시물 상세 조회에 성공했습니다.',
         },
         UPDATE: {
-        SUCCEED: '리뷰가 수정되었습니다.',
-        NO_BODY_DATA: '수정 할 정보를 입력해 주세요.',
+            SUCCEED: '게시물이 수정되었습니다.',
+            NO_BODY_DATA: '수정 할 정보를 입력해 주세요.',
         },
         DELETE: {
-        SUCCEED: '리뷰가 삭제되었습니다.',
+            SUCCEED: '게시물이 삭제되었습니다.',
         },
+    },
+    SCHEDULES: {
+        CREATED: {
+            SUCCEED: '계약서가 작성되었습니다.',
+        },
+    },
+    PROPOSALS: {
+        REQUEST: {
+            SUCCEED: '제안서가 전달되었습니다.',
+        },
+    },
+    PETS: {
+        REGISTER: {
+            SUCCEED: '반려동물이 등록되었습니다.',
+        }
     },
 };
