@@ -22,7 +22,7 @@ model Users {
   password  String
   pet  Pets[]
   proposal  Proposals[]
-  schedule  Schedule[]
+  schedule  Schedules[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -35,7 +35,7 @@ model Partners {
   nickname      String   @unique
   post      Posts[]
   proposal  Proposals[]
-  contract  Schedule[]
+  contract  Schedules[]
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -85,7 +85,7 @@ model Proposals {
   @@map("proposals")
 }
 
-model Schedule{
+model Schedules{
   id Int @id @default(autoincrement())
   partnerId Int @unique
   userId  Int @unique 
@@ -96,7 +96,7 @@ model Schedule{
   partner Partners @relation(fields: [partnerId], references: [id])
   user Users @relation(fields: [userId],references: [id])
 
-  @@map("contracts")
+  @@map("schedules")
 }
 
 
@@ -110,4 +110,9 @@ enum TYPES {
 enum GENDER {
   FEMALE
   MALE
+}
+
+enum ROLE {
+  USER
+  PARTNER
 }
