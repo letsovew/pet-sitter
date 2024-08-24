@@ -2,7 +2,7 @@ import { prisma } from '../utils/prisma.util.js';
 
 export class UserRepository {
 
-    createProposal = async(userId, partnerId, title, content) => {
+    requestProposal = async(userId, partnerId, title, content) => {
         const data = await prisma.proposals.create({
             data: {
                 userId,

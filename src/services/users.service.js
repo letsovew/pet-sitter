@@ -3,7 +3,8 @@ import { UserRepository } from '../repositories/users.repository.js';
 const userRepository = new UserRepository();
 
 export class UserService {
-    createProposal = async (userId, partnerId, title, content) => {
+    
+    requestProposal = async (userId, partnerId, title, content) => {
         if(!partnerId) return res.json('존재하지 않는 파트너입니다.');
         if(!title || !content) return res.json('모든 항목을 기재해 주십시오.');
 
