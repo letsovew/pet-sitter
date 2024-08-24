@@ -22,7 +22,7 @@ model Users {
   password  String
   pet  Pets[]
   proposal  Proposals[]
-  contract  Contracts[]
+  schedule  Schedule[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -35,7 +35,7 @@ model Partners {
   nickname      String   @unique
   post      Posts[]
   proposal  Proposals[]
-  contract  Contracts[]
+  contract  Schedule[]
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -71,7 +71,7 @@ model Posts{
   @@map("posts")
 }
 
-model Proposals {   //Request for Proposal(제안요청서)
+model Proposals {
   id  Int   @id @default(autoincrement())
   userId Int @unique
   partnerId Int @unique
@@ -85,11 +85,10 @@ model Proposals {   //Request for Proposal(제안요청서)
   @@map("proposals")
 }
 
-model Contracts{  //Service Level Agreement(서비스 수준 협약)
+model Schedule{
   id Int @id @default(autoincrement())
   partnerId Int @unique
   userId  Int @unique 
-  petId Int @unique
   content String @db.Text
   date  DateTime
   createdAt DateTime @default(now())
