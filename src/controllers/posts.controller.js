@@ -1,5 +1,5 @@
 import { MESSAGES } from '../constants/message.constant.js';
-import { PostService } from '../services/post.service.js';
+import { PostService } from '../services/posts.service.js';
 
 const postService = new PostService();
 

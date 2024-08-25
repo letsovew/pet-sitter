@@ -36,11 +36,11 @@ export const MESSAGES = {
         SUCCEED: '로그인에 성공했습니다.',
         },
         REGISTER: {
-            SUCCEED: '파트너 등록이 완료되었습니다.'.
+            SUCCEED: '파트너 등록이 완료되었습니다.',
         },
     },
     USER: {
-        BAD_REQUEST: '잘못된 접근입니다.';
+        BAD_REQUEST: '잘못된 접근입니다.',
         READ_ME: {
         SUCCEED: '내 정보 조회에 성공했습니다.',
         },

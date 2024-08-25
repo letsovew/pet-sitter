@@ -39,13 +39,13 @@ app.use(
             maxAge: 1000 * 60 * 60 * 24, //쿠키 유효시간 24시간
         },
         store : new sessionStore,
-    });
+    })
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use('/', indexRouter);
+app.use('/pet-sitter', indexRouter);
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on : 서버가 ${SERVER_PORT}번 포트에서 실행 중입니다.`);
 });

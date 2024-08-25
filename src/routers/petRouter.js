@@ -1,5 +1,5 @@
 import express from "express";
-import routes from "./routes";
+import routes from "./routes.js";
 import { register } from "../controllers/pets.controller.js";
 import { checkLoggedUser } from "../middlewares/locals.middleware.js";
 

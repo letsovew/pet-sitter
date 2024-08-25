@@ -1,14 +1,14 @@
 import express from "express";
-import routes from "./routes";
-import { createPostValidator } from "../middlewares/validators/create.validator";
+import routes from "./routes.js";
+import { createPostValidator } from "../middlewares/validators/create.validator.js";
 import { checkLoggedUser } from "../middlewares/locals.middleware.js";
-import { updatePostValidator } from "../middlewares/validators/update.validator";
+import { updatePostValidator } from "../middlewares/validators/update.validator.js";
 import {
     getAllPost,
     createPost,
     updatePost,
 } from "../controllers/posts.controller.js";
-import { updateResumeValidator } from "../middlewares/validators/update.validator";
+import { updateResumeValidator } from "../middlewares/validators/update.validator.js";
 
 const postRouter = express.Router();
 

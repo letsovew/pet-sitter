@@ -5,7 +5,7 @@ import { userRouter } from './userRouter.js';
 import { partnerRouter } from './partnerRouter.js';
 import { petRouter } from './petRouter.js';
 import { postRouter } from './postRouter.js';
-import { proposalRouter } from './proposalRouter.js';
+//import { proposalRouter } from './proposalRouter.js';
 
 const indexRouter = express.Router();
 
@@ -14,7 +14,7 @@ indexRouter.use(routes.users, userRouter);
 indexRouter.use(routes.partners, partnerRouter);
 indexRouter.use(routes.pets, petRouter);
 indexRouter.use(routes.posts, postRouter);
-indexRouter.use(routes.proposals, proposalRouter);
+//indexRouter.use(routes.proposals, proposalRouter);
 indexRouter.use(routes.schedules, scheduleRouter);
 
 export { indexRouter };

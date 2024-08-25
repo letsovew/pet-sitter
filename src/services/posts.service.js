@@ -11,14 +11,12 @@ export class PostService {
             const posts = await postsRepository.getAllPost(author.Id);
 
             return posts.map( post => {
-                return{
                     id: +post.id,
                     authorId: +post.authorId,
                     title: post.title,
                     content: post.content,
-                    createAt: post.createdAt,
-                    updateAt: post.updatedAt,
-                },
+                    createdAt: post.createdAt,
+                    updatedAt: post.updatedAt,
             });
         }catch(error){
             return res.json(error);
