@@ -1,7 +1,7 @@
 import express from "express";
-import routes from "./routes";
-import { joinValidator } from "../middlewares/validators/join.validator";
-import { logInValidator } from "../middlewares/validators/login.validator";
+import routes from "./routes.js";
+import { joinValidator } from "../middlewares/validators/join.validator.js";
+import { logInValidator } from "../middlewares/validators/login.validator.js";
 import {
     join,
     logIn,

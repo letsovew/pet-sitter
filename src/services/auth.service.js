@@ -4,13 +4,13 @@ const authRepository = new AuthRepository();
 
 export class AuthService {
 
-    join = async ({email, name, password}) => {
+    join = async (email, name, password) => {
 
-        const isExisted = await authRepository.readOneByEmail(email);
+        //const isExisted = await authRepository.readOneByEmail(email);
         try{
-            if(!isExisted) throw new Error('이미 가입된 이메일입니다.');
+            //if(!isExisted) throw new Error('이미 가입된 이메일입니다.');
 
-            const data = await authRepository.create({email, name, password});
+            const data = await authRepository.create(email, name, password);
 
             return data;
 
