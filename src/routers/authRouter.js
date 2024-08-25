@@ -13,7 +13,7 @@ import {
 
 const authRouter = express.Router();
 
-authRouter.post(routes.join, joinValidator, join);
+authRouter.post(routes.join, join);
 authRouter.post(routes.logIn, logInValidator, logIn);
 authRouter.post(routes.register, checkLoggedUser, register);
 
