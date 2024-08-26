@@ -1,8 +1,11 @@
+import { HTTP_STATUS } from '../constants/http-status.constant.js';
+import { MESSAGES } from '../constants/message.constant.js';
 import { AuthService } from '../services/auth.service.js';
 
 const authService = new AuthService();
 
 export class AuthController {
+    //authService = new this.AuthService();
 
     join = async (req, res, next) => {
         const{
@@ -17,7 +20,7 @@ export class AuthController {
             });
         }catch(error){
             next(error);
-        }
+        };
     };
 
     logIn = async (req, res, next) => {
@@ -48,5 +51,5 @@ export class AuthController {
         }catch(error){
             next(error);
         };
-    }
+    };
 };

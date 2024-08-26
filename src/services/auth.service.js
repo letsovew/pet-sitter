@@ -24,7 +24,7 @@ export class AuthService {
 
         const isExisted = await authRepository.readOneByEmail(user.email);
         try{
-            if(!isExisted) throw new Error('이미 등록된 파트너입니다.');
+            if(!isExisted) return res.json('already a registered partner.');
             const data = await authRepository.create(user);
             return data;
         }catch(error){

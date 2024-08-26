@@ -1,3 +1,4 @@
+import { HTTP_STATUS } from '../constants/http-status.constant.js';
 import { MESSAGES } from '../constants/message.constant.js';
 import { PostService } from '../services/posts.service.js';
 
@@ -9,6 +10,15 @@ export class PostController {
 
         try{
             const posts = await postService.getAllPost();
+
+            return posts.map( post => {
+                res.json({
+                    "id": post.id,
+                    "partnerId": post.partnerId,
+                    "title": post.title,
+                    "createdAt": post.createdAt,
+                });
+            });
             res.json({ data: posts });
             next();
         }catch(error){
@@ -17,14 +27,14 @@ export class PostController {
     };
 
     createPost = async(req, res, next) => {
-        const author = req.logged.partner;
+        const partner = req.logged.partner;
         const{
             body: { title, content }
         } = req;
         try{
-            if (!title || !content) throw new Error('InvalidParamsError');
+            if (!title || !content) return res.json('InvalidParamsError');
 
-            const post = await postService.createPost(author.id, author.email, title, content);
+            const post = await postService.createPost(partner.id, partner.email, title, content);
 
             return res.status(HTTP_STATUS.OK).json({
                 message: MESSAGES.POSTS.CREATED.SUCCEED,
@@ -37,7 +47,7 @@ export class PostController {
     };
 
     updatePost = async(req, res, next) => {
-        const author = req.logged.partner;
+        const partner = req.logged.partner;
         const{
             body: { title, content}
         } = req;
@@ -50,7 +60,7 @@ export class PostController {
                     message: MESSAGES.POSTS.COMMON.NOT_FOUND,
                 });
             }
-            const newPost = await postService.updatePost(author.id, postId, title, content);
+            const newPost = await postService.updatePost(partner.id, postId, title, content);
             return res.status(HTTP_STATUS.OK).json({
                 status: HTTP_STATUS.OK,
                 message: MESSAGES.POSTS.UPDATE.SUCCEED,

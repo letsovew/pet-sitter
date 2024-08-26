@@ -3,22 +3,18 @@ import { prisma } from '../utils/prisma.util.js';
 export class PostRepository{
 
     getAllPost = async() => {
-        let data = await prisma.posts.findMany({
-            orderBy: {
-                createdAt: sort,
-            },
-        });
+        let posts = await prisma.posts.findMany({});
 
-        return data;
+        return posts;
     };
 
-    createPost = async (authorId, email, title, content) => {
+    createPost = async (partnerId, email, title, content) => {
         const post = await prisma.posts.create({
             data: {
-                authorId,
+                partnerId,
                 title,
                 content,
-            };
+            },
         });
         return post;
     };

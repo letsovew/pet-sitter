@@ -1,8 +1,10 @@
+import { HTTP_STATUS } from '../constants/http-status.constant.js';
+import { MESSAGES } from '../constants/message.constant.js';
 import { PetsService } from '../services/pets.service.js';
 
 const petsService = new PetService();
 
-export class PetsController {
+export class PetController {
     
     register = async (req, res, next) => {
         const {

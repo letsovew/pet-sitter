@@ -3,4 +3,4 @@ import routes from "./routes.js";
 
 const scheduleRouter = express.Router();
 
-export default scheduleRouter;
+export { scheduleRouter };

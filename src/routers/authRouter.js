@@ -2,19 +2,13 @@ import express from "express";
 import routes from "./routes.js";
 import { joinValidator } from "../middlewares/validators/join.validator.js";
 import { logInValidator } from "../middlewares/validators/login.validator.js";
-import {
-    join,
-    logIn,
-    register,
-} from "../controllers/auth.controller.js";
-import {
-    checkLoggedUser,
-} from '../middlewares/locals.middleware.js';
+import { AuthController} from "../controllers/auth.controller.js";
+import { checkLoggedUser } from '../middlewares/locals.middleware.js';
 
 const authRouter = express.Router();
 
-authRouter.post(routes.join, join);
-authRouter.post(routes.logIn, logInValidator, logIn);
-authRouter.post(routes.register, checkLoggedUser, register);
+authRouter.post(routes.join, AuthController.join);
+authRouter.post(routes.logIn, logInValidator, AuthController.logIn);
+authRouter.post(routes.register, checkLoggedUser, AuthController.register);
 
-export default { authRouter };
+export { authRouter };

@@ -1,4 +1,4 @@
-import { prisma } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 export const prisma = new PrismaClient({
     // Prisma를 이용해 데이터베이스를 접근할 때, SQL을 출력해줍니다.
@@ -10,7 +10,7 @@ export const prisma = new PrismaClient({
 
 try {
     await prisma.$connect();
-    console.log('DB 연결에 성공했습니다.');
+    console.log('mySQL connection Success.');
 }catch (error) {
-    console.error('DB 연결에 실패했습니다.', error);
+    console.error('mySQL connection failed.', error);
 }
