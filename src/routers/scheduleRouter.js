@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "./routes.js";
 
-const scheduleRouter = express.Router();
+// const scheduleRouter = express.Router();
 
-export { scheduleRouter };
+// export { scheduleRouter };

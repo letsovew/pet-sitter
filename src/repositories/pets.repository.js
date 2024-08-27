@@ -1,6 +1,6 @@
 import { prisma } from '../utils/prisma.util.js';
 
-export class PetsRepository {
+export class PetRepository {
 
     register = async (userId, name, type, age, gender) => {
         const pet = await prisma.partners.create({

@@ -1,17 +1,15 @@
-import { PetsRepository } from '../repositories/pets.repository.js';
+import { PetRepository } from '../repositories/pets.repository.js';
 
-const petsRepository = new PetsRepository();
+const petRepository = new PetRepository();
 
-export class PetsService {
+export class PetService {
 
     register = async (userId, name, type, age, gender) => {
         try{
-            const data = await petsRepository.register(userId, name, type, age, gender);
+            const data = await petRepository.register(userId, name, type, age, gender);
             return data;
         }catch(error){
             res.json(error);
         };
-
-        return data;
     };
 }

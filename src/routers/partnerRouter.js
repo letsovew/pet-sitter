@@ -5,6 +5,8 @@ import { checkLoggedUser } from "../middlewares/locals.middleware.js";
 
 const partnerRouter = express.Router();
 
-partnerRouter.post(routes.createSchedule, checkLoggedUser, PartnerController.createSchedule);
+const partnerController = new PartnerController();
+
+partnerRouter.post(routes.createSchedule, checkLoggedUser, partnerController.createSchedule);
 
 export { partnerRouter };

@@ -11,7 +11,7 @@ const schema = Joi.object({
     }),
 });
 
-export const logInValidator = async (req, res, next) => {
+export const loginValidator = async (req, res, next) => {
     try {
         await schema.validateAsync(req.body);
         next();

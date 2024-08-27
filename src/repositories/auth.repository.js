@@ -2,18 +2,22 @@ import { prisma } from '../utils/prisma.util.js';
 
 export class AuthRepository {
 
-    // existedUser = async (email) => {
-    //     const user = await prisma.users.findUnique({ where: { email } });
+    isExisted = async (email) => {
+        const user = await prisma.users.findUnique({ where: { email } });
+        return user;
+    };
 
-    //     return user;
-    // };
+    readOneByEmail = async (email) => {
+        const data = await prisma.users.findUnique({ where: { email }});
+        return data;
+    };
 
-    join = async (email, password, name) => {
-        const data = await prisma.user.create({
+    join = async (email, nickname, password) => {
+        const data = await prisma.users.create({
             data: {
                 email,
+                nickname,
                 password,
-                name,
             },
         });
         return data;
@@ -23,7 +27,7 @@ export class AuthRepository {
         const partner = await prisma.partners.create({
             data: {
                 email: user.email,
-                nickname,
+                nickname: user.nickname,
             },
         });
         return partner;

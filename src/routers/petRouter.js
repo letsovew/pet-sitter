@@ -5,6 +5,8 @@ import { checkLoggedUser } from "../middlewares/locals.middleware.js";
 
 const petRouter = express.Router();
 
-petRouter.post(routes.petRegister, checkLoggedUser, PetsController.register);
+const petController = new PetController();
+
+petRouter.post(routes.petRegister, checkLoggedUser, petController.register);
 
 export { petRouter };

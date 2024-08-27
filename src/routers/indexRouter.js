@@ -15,6 +15,6 @@ indexRouter.use(routes.partners, partnerRouter);
 indexRouter.use(routes.pets, petRouter);
 indexRouter.use(routes.posts, postRouter);
 //indexRouter.use(routes.proposals, proposalRouter);
-indexRouter.use(routes.schedules, scheduleRouter);
+//indexRouter.use(routes.schedules, scheduleRouter);
 
 export { indexRouter };

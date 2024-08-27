@@ -42,7 +42,7 @@ const routes = {
     posts: POSTS,
     join: JOIN,
     login: LOGIN,
-    authRegister: AUTH_REGISTER,
+    register: AUTH_REGISTER,
     userUpdate: id => {
         if(id)  return `/users/update/${id}`;
         else return USER_UPDATE;

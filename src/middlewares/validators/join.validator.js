@@ -11,12 +11,12 @@ const schema = Joi.object({
         'any.required': MESSAGES.AUTH.COMMON.PASSWORD.REQUIRED,
         'string.min': MESSAGES.AUTH.COMMON.PASSWORD.MIN_LENGTH,
     }),
-    passwordConfirm: Joi.string().required().valid(Joi.ref('password')).messages({
-        'any.required': MESSAGES.AUTH.COMMON.PASSWORD_CONFIRM.REQUIRED,
-        'any.only': MESSAGES.AUTH.COMMON.PASSWORD_CONFIRM.NOT_MATCHED_WITH_PASSWORD,
-    }),
-    name: Joi.string().required().messages({
-        'any.required': MESSAGES.AUTH.COMMON.NAME.REQUIRED,
+    // passwordConfirm: Joi.string().required().valid(Joi.ref('password')).messages({
+    //     'any.required': MESSAGES.AUTH.COMMON.PASSWORD_CONFIRM.REQUIRED,
+    //     'any.only': MESSAGES.AUTH.COMMON.PASSWORD_CONFIRM.NOT_MATCHED_WITH_PASSWORD,
+    // }),
+    nickname: Joi.string().required().messages({
+        'any.required': MESSAGES.AUTH.COMMON.NICKNAME.REQUIRED,
     }),
 });
 

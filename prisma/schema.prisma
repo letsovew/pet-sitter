@@ -21,8 +21,8 @@ model Users {
   nickname      String   @unique
   password  String
   pet  Pets[]
-  proposal  Proposals?
-  schedule  Schedules?
+  proposal  Proposals[]
+  schedule  Schedules[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -33,9 +33,9 @@ model Partners {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   nickname      String   @unique
-  post      Posts?
-  proposal  Proposals?
-  schedule  Schedules?
+  post      Posts[]
+  proposal  Proposals[]
+  schedule  Schedules[]
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

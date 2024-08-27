@@ -5,14 +5,21 @@ import { AuthService } from '../services/auth.service.js';
 const authService = new AuthService();
 
 export class AuthController {
-    //authService = new this.AuthService();
 
     join = async (req, res, next) => {
         const{
-            body : {email, name, password}
+            body : {email, nickname, password}
         } = req;
         try{
-            const data = await authService.join(email, name, password);
+            if(!email || !nickname || !password) return res.status(HTTP_STATUS.NOT_FOUND).json({
+                status: HTTP_STATUS.NOT_FOUND,
+                message: MESSAGES.AUTH.COMMON.UNAUTHORIZED,
+            });
+            const data = await authService.join(email, nickname, password);
+            if(!data) return res.status(HTTP_STATUS.NOT_FOUND).json({
+                status: HTTP_STATUS.NOT_FOUND,
+                message: MESSAGES.AUTH.COMMON.SESSION.INVALID,
+            });
             return res.status(HTTP_STATUS.CREATED).json({
                 status: HTTP_STATUS.CREATED,
                 message: MESSAGES.AUTH.JOIN.SUCCEED,
@@ -23,7 +30,7 @@ export class AuthController {
         };
     };
 
-    logIn = async (req, res, next) => {
+    login = async (req, res, next) => {
         const { user } = req.user;
         try{
             const data = await authService.logIn(user);

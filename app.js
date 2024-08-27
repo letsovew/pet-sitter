@@ -10,7 +10,7 @@ const app = express();
 
 dotenv.config();
 
-const MySQLStore = MYSQLSession(session);
+const MySQLStore = new MySQLSession(session);
 
 const options = {
     host: process.env.MYSQL_HOST,
@@ -23,7 +23,7 @@ const options = {
     createDatabaseTable: true, // 세션 데이터베이스 테이블이 아직 존재하지 않는 경우 생성할지 여부
 };
 
-const sessionStore = MySQLStore(options);
+const sessionStore = new MySQLStore(options);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -38,7 +38,7 @@ app.use(
             httpOnly: true, //자바스크립트를 통해 세션 쿠키를 사용할 수 없도록 함
             maxAge: 1000 * 60 * 60 * 24, //쿠키 유효시간 24시간
         },
-        store : new sessionStore,
+        store : sessionStore,
     })
 );
 app.use(bodyParser.json());
@@ -46,8 +46,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use('/pet-sitter', indexRouter);
-app.listen(SERVER_PORT, () => {
-    console.log(`Listening on : 서버가 ${SERVER_PORT}번 포트에서 실행 중입니다.`);
+app.listen(process.env.SERVER_PORT, () => {
+    console.log(`Listening on : http://127.0.0.1:${process.env.SERVER_PORT}`);
 });
 
 export default app;

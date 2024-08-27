@@ -7,8 +7,10 @@ import { PostController } from "../controllers/posts.controller.js";
 
 const postRouter = express.Router();
 
-postRouter.get(routes.posts, checkLoggedUser, PostController.getAllPost);
-postRouter.post(routes.createPost, checkLoggedUser, createPostValidator, PostController.createPost);
-postRouter.post(routes.updatePost, checkLoggedUser, updatePostValidator, PostController.updatePost);
+const postController = new PostController();
+
+postRouter.get(routes.posts, checkLoggedUser, postController.getAllPost);
+postRouter.post(routes.createPost, checkLoggedUser, createPostValidator, postController.createPost);
+postRouter.post(routes.updatePost, checkLoggedUser, updatePostValidator, postController.updatePost);
 
 export { postRouter };
