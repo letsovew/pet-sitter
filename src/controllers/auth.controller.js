@@ -1,6 +1,7 @@
 import { HTTP_STATUS } from '../constants/http-status.constant.js';
 import { MESSAGES } from '../constants/message.constant.js';
 import { AuthService } from '../services/auth.service.js';
+import { errorHandler } from '../middlewares/error-handler.js';
 
 const authService = new AuthService();
 
@@ -11,15 +12,7 @@ export class AuthController {
             body : {email, nickname, password}
         } = req;
         try{
-            if(!email || !nickname || !password) return res.status(HTTP_STATUS.NOT_FOUND).json({
-                status: HTTP_STATUS.NOT_FOUND,
-                message: MESSAGES.AUTH.COMMON.UNAUTHORIZED,
-            });
             const data = await authService.join(email, nickname, password);
-            if(!data) return res.status(HTTP_STATUS.NOT_FOUND).json({
-                status: HTTP_STATUS.NOT_FOUND,
-                message: MESSAGES.AUTH.COMMON.SESSION.INVALID,
-            });
             return res.status(HTTP_STATUS.CREATED).json({
                 status: HTTP_STATUS.CREATED,
                 message: MESSAGES.AUTH.JOIN.SUCCEED,

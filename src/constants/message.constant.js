@@ -100,4 +100,7 @@ export const MESSAGES = {
             SUCCEED: 'Pet has been enrolled.',
         }
     },
+    SERVER: {
+        ERROR: `The operation couldn't complete due to an unexpected error on the server, please try again later.`,
+    },
 };
