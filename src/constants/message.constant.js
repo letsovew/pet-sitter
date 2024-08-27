@@ -89,6 +89,7 @@ export const MESSAGES = {
         CREATED: {
             SUCCEED: 'The contract is complete.',
         },
+        REQUIRED: 'Please fill in everything.',
     },
     PROPOSALS: {
         REQUEST: {
@@ -103,4 +104,5 @@ export const MESSAGES = {
     SERVER: {
         ERROR: `The operation couldn't complete due to an unexpected error on the server, please try again later.`,
     },
+    REQUIRED: 'Please enter all fields.',
 };

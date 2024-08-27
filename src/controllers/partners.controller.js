@@ -11,20 +11,15 @@ export class PartnerController {
         const {
             body: { userId, description, date }
         } = req;
-
         try{
             const schedule = await partnerService.createSchedule(partnerId, userId, description, date);
             return res.status(HTTP_STATUS.CREATED).json({
                 status: HTTP_STATUS.CREATED,
                 message: MESSAGES.SCHEDULES.CREATED.SUCCEED,
-                data: { schedule },
+                data: schedule,
             });
         }catch(error){
             next(error);
         };
-    }
-
-    getAllProposal = async(req, res, next) => {
-
     };
-}
+};
