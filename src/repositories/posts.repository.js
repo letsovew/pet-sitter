@@ -8,7 +8,7 @@ export class PostRepository{
         return posts;
     };
 
-    createPost = async (partnerId, email, title, content) => {
+    createPost = async (partnerId, title, content) => {
         const post = await prisma.posts.create({
             data: {
                 partnerId,

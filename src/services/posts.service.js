@@ -1,39 +1,65 @@
 import { PostRepository } from '../repositories/posts.repository.js';
+import { HTTP_STATUS } from '../constants/http-status.constant.js';
+import { MESSAGES } from '../constants/message.constant.js';
 
 const postRepository = new PostRepository();
 
 export class PostService {
 
     getAllPost = async(user) => {
+        if(!user) return json({
+            status: HTTP_STATUS.BAD_REQUEST,
+            message: MESSAGES.AUTH.COMMON.SESSION.NO_SESSION,
+        });
         try{
-            if(!user) return res.json('회원만 접근 가능합니다.');
-
             const posts = await postsRepository.findMany({});
-
-            return { posts }
+            if(!posts) return json({
+                status: HTTP_STATUS.NOT_FOUND,
+                message: MESSAGES.POSTS.COMMON.NOT_FOUND,
+            });
+            return posts;
         }catch(error){
-            return res.json(error);
+            return json(error);
         };
     };
 
-    createPost = async (partnerId, email, title, content) => {
-        const post = await postRepository.createPost(partnerId, email, title, content);
-        if(!post) return res.json('게시물 등록에 실패했습니다.');
-        return{
-            id: +post.id,
-            partnerId: +post.partnerId,
-            title: post.title,
-            content: post.content,
-            createdAt: post.createdAt,
-            updatedAt: post.updatedAt,
-        };
+    createPost = async (partnerId, title, content) => {
+        if(!partnerId) return json({
+            status: HTTP_STATUS.BAD_REQUEST,
+            message: MESSAGES.AUTH.COMMON.SESSION.EXPIRED,
+        });
+        if(!title) return json({
+            status: HTTP_STATUS.BAD_REQUEST,
+            message: MESSAGES.POSTS.COMMON.TITLE,
+        });
+        if(!content) return json({
+            status: HTTP_STATUS.BAD_REQUEST,
+            message: MESSAGES.POSTS.COMMON.CONTENT,
+        });
+        const post = await postRepository.createPost(partnerId, title, content);
+        if(!post) return json({
+            status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+            message: MESSAGES.SERVER.ERROR,
+        });
+        return post;
     };
 
     updatePost = async (authorId, postId, title, content) => {
-        if(!postId) return res.json('존재하지 않는 게시물입니다.');
-        if(!title && !content) return res.json('변경할 내용을 기입해 주십시오.');
+        if (!postId || !authorId) {
+            return json({
+                status: HTTP_STATUS.NOT_FOUND,
+                message: MESSAGES.POSTS.COMMON.NOT_FOUND,
+            });
+        };
+        if(!title && !content) return json({
+            status: HTTP_STATUS.BAD_REQUEST,
+            message: MESSAGES.REQUIRED,
+        });
         const newPost = await postRepository.updatePost(authorId, postId, title, content);
-        if(!newPost) return res.json('게시물 수정에 실패했습니다.');
-        return { newPost };
+        if(!newPost) return json({
+            status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+            message: MESSAGES.SERVER.ERROR,
+        });
+        return newPost;
     };
-}
+};

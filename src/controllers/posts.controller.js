@@ -27,15 +27,12 @@ export class PostController {
     };
 
     createPost = async(req, res, next) => {
-        const partner = req.logged.partner;
+        const partner = req.logged.user;
         const{
             body: { title, content }
         } = req;
         try{
-            if (!title || !content) return res.json('InvalidParamsError');
-
-            const post = await postService.createPost(partner.id, partner.email, title, content);
-
+            const post = await postService.createPost(partner.id, title, content);
             return res.status(HTTP_STATUS.OK).json({
                 message: MESSAGES.POSTS.CREATED.SUCCEED,
                 data: post,
@@ -54,12 +51,6 @@ export class PostController {
         const postId = req.query.id;
 
         try{
-            if (!post) {
-                return res.status(HTTP_STATUS.NOT_FOUND).json({
-                    status: HTTP_STATUS.NOT_FOUND,
-                    message: MESSAGES.POSTS.COMMON.NOT_FOUND,
-                });
-            }
             const newPost = await postService.updatePost(partner.id, postId, title, content);
             return res.status(HTTP_STATUS.OK).json({
                 status: HTTP_STATUS.OK,
