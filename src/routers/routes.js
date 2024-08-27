@@ -7,7 +7,7 @@ const AUTH_REGISTER = "/register";
 //USERS
 const USERS = "/users";
 const USER_UPDATE = "/update/:id";
-const REQUEST_PROPOSALS = "/proposals";
+const REQUEST_PROPOSALS = "/proposals/:id";
 const USER_SCHEDULES = "/schdules";
 
 //PARTNERS
@@ -51,7 +51,10 @@ const routes = {
         if(id) return `/posts/update/${id}`;
         else return POST_UPDATE;
     },
-    requestProposals: REQUEST_PROPOSALS,
+    requestProposals: id => {
+        if(id) return `/users/proposals/${id}`;
+        else return REQUEST_PROPOSALS;
+    },
     userSchedules: USER_SCHEDULES,
     partnerProposals: PARTNER_PROPOSALS,
     partnerSchedule: PARTNER_SCHEDULE,

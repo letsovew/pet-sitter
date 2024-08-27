@@ -38,7 +38,6 @@ export class AuthController {
             res.status(HTTP_STATUS.OK).json({
                 status: HTTP_STATUS.OK,
                 message: MESSAGES.AUTH.LOGIN.SUCCEED,
-                data,
             });
             next();
         }catch(error){
