@@ -11,14 +11,13 @@ export class PostController {
         try{
             const posts = await postService.getAllPost();
 
-            return posts.map( post => {
-                res.json({
-                    "id": post.id,
-                    "partnerId": post.partnerId,
-                    "title": post.title,
-                    "createdAt": post.createdAt,
-                });
-            });
+            // return posts.map( post => {
+            //     res.json({
+            //         id: post.id,
+            //         title: post.title,
+            //         createdAt: post.createdAt,
+            //     });
+            // });
             res.json({ data: posts });
             next();
         }catch(error){

@@ -1,22 +1,29 @@
 import { UserRepository } from '../repositories/users.repository.js';
+import { HTTP_STATUS } from '../constants/http-status.constant.js';
+import { MESSAGES } from '../constants/message.constant.js';
 
 const userRepository = new UserRepository();
 
 export class UserService {
 
     requestProposals = async (userId, partnerId, title, content) => {
-        if(!partnerId) return res.json('존재하지 않는 파트너입니다.');
-        if(!title || !content) return res.json('모든 항목을 기재해 주십시오.');
-
-        const data = await userRepository.requestProposals(userId, partnerId, title, content);
-        if(!data) return res.json('서비스 요청을 실패하였습니다.');
-        return{
-            id: +data.id,
-            userId: +data.userId,
-            partnerId: +data.partnerId,
-            title: data.title,
-            content: data.content,
-            createdAt: data.createdAt
+        if(!partnerId || !userId) return json({
+            status: HTTP_STATUS.BAD_REQUEST,
+            message: MESSAGES.REQUIRED,
+        });
+        if(!title || !content) return json({
+            status: HTTP_STATUS.BAD_REQUEST,
+            message: MESSAGES.REQUIRED,
+        });
+        try{
+            const data = await userRepository.requestProposals(userId, partnerId, title, content);
+            if(!data) return json({
+                status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+                message: MESSAGES.SERVER.ERROR,
+            });
+            return data;
+        }catch(err){
+            return json(error);
         };
     };
 }
