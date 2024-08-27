@@ -11,14 +11,15 @@ export class PartnerService {
             status:HTTP_STATUS.BAD_REQUEST,
             message: MESSAGES.SCHEDULES.REQUIRED,
         });
-        const schedule = await partnerRepository.createSchedule(partnerId, userId, description, date);
-        return {
-            id: +schedule.id,
-            userId: +schedule.userId,
-            partnerId: +schedule.partnerId,
-            description: schedule.description,
-            date: schedule.date,
-            createdAt: schedule.createdAt,
+        try{
+            const schedule = await partnerRepository.createSchedule(partnerId, userId, description, date);
+            if(!schedule) return json({
+                status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+                message: MESSAGES.SERVER.ERROR,
+            });
+            return schedule;
+        }catch(err){
+            return json(err);
         };
     };
 };

@@ -36,12 +36,16 @@ export class PostService {
             status: HTTP_STATUS.BAD_REQUEST,
             message: MESSAGES.POSTS.COMMON.CONTENT,
         });
-        const post = await postRepository.createPost(partnerId, title, content);
-        if(!post) return json({
-            status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
-            message: MESSAGES.SERVER.ERROR,
-        });
-        return post;
+        try{
+            const post = await postRepository.createPost(partnerId, title, content);
+            if(!post) return json({
+                status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+                message: MESSAGES.SERVER.ERROR,
+            });
+            return post;
+        }catch(err){
+            return json(err);
+        };
     };
 
     updatePost = async (authorId, postId, title, content) => {
@@ -55,11 +59,15 @@ export class PostService {
             status: HTTP_STATUS.BAD_REQUEST,
             message: MESSAGES.REQUIRED,
         });
-        const newPost = await postRepository.updatePost(authorId, postId, title, content);
-        if(!newPost) return json({
-            status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
-            message: MESSAGES.SERVER.ERROR,
-        });
-        return newPost;
+        try{
+            const newPost = await postRepository.updatePost(authorId, postId, title, content);
+            if(!newPost) return json({
+                status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+                message: MESSAGES.SERVER.ERROR,
+            });
+            return newPost;
+        }catch(err){
+            return json(err);
+        };
     };
 };

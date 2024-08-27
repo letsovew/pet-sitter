@@ -10,7 +10,6 @@ export class PostController {
 
         try{
             const posts = await postService.getAllPost();
-
             // return posts.map( post => {
             //     res.json({
             //         id: post.id,
@@ -48,7 +47,6 @@ export class PostController {
             body: { title, content}
         } = req;
         const postId = req.query.id;
-
         try{
             const newPost = await postService.updatePost(partner.id, postId, title, content);
             return res.status(HTTP_STATUS.OK).json({
